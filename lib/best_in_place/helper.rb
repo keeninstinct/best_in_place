@@ -80,6 +80,7 @@ module BestInPlace
         object.send(opts[:display_as]).to_s
 
       elsif opts[:display_with].try(:is_a?, Proc)
+        BestInPlace::DisplayMethods.add_proc_method(object.class.to_s, field, opts[:display_with])
         opts[:display_with].call(object.send(field))
 
       elsif opts[:display_with]
